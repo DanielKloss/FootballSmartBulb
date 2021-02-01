@@ -145,7 +145,7 @@ class MainProgram():
             fixtureFile.write(str(self.fixtureManager.fixtureId))
             self.logger.writeLog("Writing fixture to file - id: " + str(self.fixtureManager.fixtureId))
             fixtureFile.close()
-            job = cron.new(command="/usr/bin/python3/home/pi/flashingLight.py", comment="match")
+            job = cron.new(command="/usr/bin/python3/home/pi/light/flashingLight.py", comment="match")
             job.setall(str(self.fixtureManager.fixtureStartTime.minute), str(self.fixtureManager.fixtureStartTime.hour), '*', '*', '*')
             self.logger.writeLog("Writing Cron Job - minute: " + str(self.fixtureManager.fixtureStartTime.minute) + " hour: " + str(self.fixtureManager.fixtureStartTime.hour))
             cron.write()
