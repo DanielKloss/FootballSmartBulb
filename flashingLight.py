@@ -14,13 +14,13 @@ class ConfigReader():
     self.configLines = configFile.readlines()
   
   def getTeam(self):
-    return self.configLines[1]
+    return self.configLines[1].rstrip()
 
   def getKey(self):
-    return self.configLines[0]
+    return self.configLines[0].rstrip()
 
 class Logger():
-  fileName = "Logs.txt"
+  fileName = "logs/" + str(datetime.date.today()) + ".txt"
 
   def writeLog(self, message):
     file = open(self.fileName, 'a')
