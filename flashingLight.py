@@ -10,7 +10,7 @@ import unittest
 
 class ConfigReader():
   def __init__(self):
-    configFile = open("flashingLightConfig.txt", "r")
+    configFile = open("/home/pi/light/flashingLightConfig.txt", "r")
     self.configLines = configFile.readlines()
   
   def getTeam(self):
