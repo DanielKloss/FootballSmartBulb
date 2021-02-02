@@ -20,7 +20,7 @@ class ConfigReader():
     return self.configLines[0].rstrip()
 
 class Logger():
-  fileName = "logs/" + str(datetime.date.today()) + ".txt"
+  fileName = "/home/pi/light/logs/" + str(datetime.date.today()) + ".txt"
 
   def writeLog(self, message):
     file = open(self.fileName, 'a')
@@ -112,7 +112,7 @@ class MainProgram():
     self.ledPin = 12
     GPIO.setup(self.ledPin, GPIO.OUT)
 
-    fixtureFile = open("fixtures.txt", "r+")
+    fixtureFile = open("home/pi/light/fixtures.txt", "r+")
     fixtureIds = fixtureFile.readlines()
     cron = CronTab(user="pi")
 
