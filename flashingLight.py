@@ -112,7 +112,7 @@ class MainProgram():
     self.ledPin = 12
     GPIO.setup(self.ledPin, GPIO.OUT)
 
-    fixtureFile = open("home/pi/light/fixtures.txt", "r+")
+    fixtureFile = open("/home/pi/light/fixtures.txt", "r+")
     fixtureIds = fixtureFile.readlines()
     cron = CronTab(user="pi")
 
