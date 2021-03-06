@@ -93,7 +93,7 @@ class GoalManager():
       self.logger.writeLog("Checked for goal: " + str(goals))
       if goals == "":
           self.logger.writeLog("Error getting data")
-          return 0
+          return "error"
       else:
         for goal in goals:
           if goal["detail"] == "Missed Penalty":
@@ -121,7 +121,12 @@ class MainProgram():
       for i in range (99):
         self.logger.writeLog("Checking for goal - Team: " + str(self.team) + " fixtureId: " + str(fixtureIds[0]))
         numberOfGoals = self.goalManager.getGoals(self.team, fixtureIds[0])
-        if numberOfGoals < goalTracker:
+        if numberOfGoals == "error":
+          self.logger.writeLog("Error getting data - will try again in 65 seconds")
+          sleep(65)
+          continue
+        elif numberOfGoals < goalTracker:
+          self.logger.writeLog("Got less goals than previous. Must be VAR disallowing goals again. Reseting number of goals back to " + numberOfGoals)
           goalTracker = numberOfGoals
         elif numberOfGoals > goalTracker:
           goalTracker = numberOfGoals
