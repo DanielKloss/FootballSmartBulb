@@ -10,7 +10,7 @@ import unittest
 
 class ConfigReader():
   def __init__(self):
-    configFile = open("/home/pi/light/flashingLightConfig.txt", "r")
+    configFile = open("/home/pi/FootballSmartBulb/flashingLightConfig.txt", "r")
     self.configLines = configFile.readlines()
   
   def getTeam(self):
@@ -20,7 +20,7 @@ class ConfigReader():
     return self.configLines[0].rstrip()
 
 class Logger():
-  fileName = "/home/pi/light/logs/" + str(datetime.date.today()) + ".txt"
+  fileName = "/home/pi/FootballSmartBulb/logs/" + str(datetime.date.today()) + ".txt"
 
   def writeLog(self, message):
     file = open(self.fileName, 'a')
@@ -150,7 +150,7 @@ class MainProgram():
             fixtureFile.write(str(self.fixtureManager.fixtureId))
             self.logger.writeLog("Writing fixture to file - id: " + str(self.fixtureManager.fixtureId))
             fixtureFile.close()
-            job = cron.new(command="/usr/bin/python3 /home/pi/light/flashingLight.py", comment="match")
+            job = cron.new(command="/usr/bin/python3 /home/pi/FootballSmartBulb/flashingLight.py", comment="match")
             job.setall(str(self.fixtureManager.fixtureStartTime.minute), str(self.fixtureManager.fixtureStartTime.hour), '*', '*', '*')
             self.logger.writeLog("Writing Cron Job - minute: " + str(self.fixtureManager.fixtureStartTime.minute) + " hour: " + str(self.fixtureManager.fixtureStartTime.hour))
             cron.write()
